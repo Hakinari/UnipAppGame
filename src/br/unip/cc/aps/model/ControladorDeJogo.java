@@ -43,7 +43,6 @@ public class ControladorDeJogo {
          if(tipoBotao == material.getTipo()){ //SE acertou
              pontos = pontos+10;
              Aplicativo.getInstance().atualizaPontosNaTela();
-             //TODO: remover isto -- comentario inútil
          }else{
              if(erros == 2){
                  JOptionPane.showMessageDialog(null,"PERDEU");
