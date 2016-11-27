@@ -1,7 +1,9 @@
 package br.unip.cc.aps.app;
 
 import br.unip.cc.aps.model.ControladorDeJogo;
+import br.unip.cc.aps.model.GerenciadorDeRecordes;
 import br.unip.cc.aps.model.GerenciadorMaterial;
+import br.unip.cc.aps.model.Recorde;
 import br.unip.cc.aps.view.PainelBotoesLixeira;
 import br.unip.cc.aps.view.PainelJogo;
 import java.io.File;
@@ -54,5 +56,10 @@ public class Aplicativo {
    public void setImagemInicialNaTela(){
        painelJogo.setImagemInicial();
    }
+   
+    public Recorde[] getArrayRecorde(){
+    return GerenciadorDeRecordes.getInstance().getRecordes();     
+    }
+
 
 }

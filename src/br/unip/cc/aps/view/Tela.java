@@ -3,6 +3,7 @@ package br.unip.cc.aps.view;
 
 import br.unip.cc.aps.app.Aplicativo;
 import br.unip.cc.aps.model.ControladorDeJogo;
+import br.unip.cc.aps.model.Recorde;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,6 +12,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+
 
 
 
@@ -62,10 +64,23 @@ public class Tela  extends JFrame{
         });
         
         JMenuItem itemRecordes = new JMenuItem("Recordes");
-        itemJogar.addActionListener(new ActionListener() {
+        itemRecordes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                                          ///////////// IMPLEMENTAR ///////////////////
+              ///////////// IMPLEMENTAR ///////////////////
+              String recordesNome = "Posição        Nome        Pontos\n";
+              Recorde[] arrayRecorde = Aplicativo.getInstance().getArrayRecorde(); 
+              
+              for(int i=0; i<=2;i++ ){
+                recordesNome = recordesNome + arrayRecorde[i].getPosicao()
+                        +" "+arrayRecorde[i].getNome()+" "+arrayRecorde[i].getPontos()+" \n" ;
+                  
+              }
+              JOptionPane.showMessageDialog(null,                                                    
+                        "Recordes:\n"
+                                +recordesNome,          
+                        "Recordes",JOptionPane.INFORMATION_MESSAGE);
+                                          
             }
         });
         

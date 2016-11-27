@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface RecordeDAO {
     public List<Recorde> getTodos()throws DaoException;
-    public Recorde[] getArrayMateriais();
+    public Recorde[] getArrayRecorde();
     public void incluir(Recorde recorde) throws DaoException;
     public void excluir(Recorde recorde) throws DaoException;
 }

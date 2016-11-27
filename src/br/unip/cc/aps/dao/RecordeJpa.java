@@ -41,22 +41,7 @@ public class RecordeJpa implements RecordeDAO{
         return listaDeRecordes;  
     }
 
-    @Override
-    public Recorde[] getArrayMateriais() {
-        Recorde[] arrayRecordes = null;
-        try {
-            List<Recorde> listaDeRecordes = getTodos();
-             arrayRecordes = new Recorde[listaDeRecordes.size()];
-            int i = 0;
-            for(Recorde recorde:listaDeRecordes){
-                arrayRecordes[i] = recorde;
-                i++;
-            }
-        } catch (DaoException ex) {
-            JOptionPane.showMessageDialog(null,"Erro ao recuperar recordes");
-        }
-            return arrayRecordes;
-    }
+    
 
     public static RecordeJpa getInstance() {
         return instance;
@@ -89,6 +74,26 @@ public class RecordeJpa implements RecordeDAO{
             throw new DaoException("Não foi possível atualizar recorde", ex);
         }
     }
+
+    @Override
+    public Recorde[] getArrayRecorde(){
+        Recorde[] arrayRecordes = null;
+        try {
+            List<Recorde> listaDeRecordes = getTodos();
+             arrayRecordes = new Recorde[listaDeRecordes.size()];
+            int i = 0;
+            for(Recorde recorde:listaDeRecordes){
+                arrayRecordes[i] = recorde;
+                i++;
+            }
+        } catch (DaoException ex) {
+            JOptionPane.showMessageDialog(null,"Erro ao recuperar recordes");
+        }
+            return arrayRecordes;
+    }
+
+    
+    
 
     
 }
