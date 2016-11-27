@@ -1,10 +1,8 @@
 package br.unip.cc.aps.app;
 
 import br.unip.cc.aps.model.ControladorDeJogo;
-import br.unip.cc.aps.model.GerenciadorDeRecordes;
 import br.unip.cc.aps.model.GerenciadorMaterial;
 import br.unip.cc.aps.view.PainelBotoesLixeira;
-import br.unip.cc.aps.view.PainelIncluirRecorde;
 import br.unip.cc.aps.view.PainelJogo;
 import java.io.File;
 import java.net.URISyntaxException;
@@ -18,7 +16,6 @@ public class Aplicativo {
    private static Aplicativo instance;
    private PainelJogo painelJogo;
    private PainelBotoesLixeira painelBotoesLixeira;
-   private PainelIncluirRecorde painelRecorde;
    
    static{
        instance = new Aplicativo();
@@ -32,13 +29,6 @@ public class Aplicativo {
         GerenciadorMaterial.getInstance();
    }
 
-    public PainelIncluirRecorde getPainelRecorde() {
-        return painelRecorde;
-    }
-   public String getNomeRecordista(){
-       return painelRecorde.getNome();
-   }
-   
    public PainelJogo getPainelJogo() {
         return painelJogo;
     }
