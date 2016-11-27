@@ -78,9 +78,8 @@ public class ControladorDeJogo {
     public void ganhou() throws DaoException{
         if(getPontos()==100){
             JOptionPane.showMessageDialog(null, "PARABÉNS VOCÊ GANHOU");
-            JPanel painelRecorde = Aplicativo.getInstance().getPainelRecorde();
-            JOptionPane.showMessageDialog(null,painelRecorde, "Você é um recordista",JOptionPane.OK_OPTION);
-            GerenciadorDeRecordes.getInstance().adicionaSeForRecorde(partida.getPontos());
+            String nome = JOptionPane.showInputDialog(null, "Digite seu nome","Você é um recordista",JOptionPane.OK_OPTION);
+            GerenciadorDeRecordes.getInstance().adicionaSeForRecorde(nome,partida.getPontos());
             //Chamar tela recordes
             acabou();
         }
