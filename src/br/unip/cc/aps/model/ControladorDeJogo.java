@@ -42,6 +42,7 @@ public class ControladorDeJogo {
              if(partida.getErros() == 2){
                  JOptionPane.showMessageDialog(null,"VOCE PERDEU");
                  System.out.println("PERDEU");
+                 Aplicativo.getInstance().atualizaPontosNaTela();
                  acabou();
              }else{
                  partida.addErro();

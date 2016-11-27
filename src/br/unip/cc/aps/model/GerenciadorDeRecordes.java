@@ -1,6 +1,5 @@
 package br.unip.cc.aps.model;
 
-import br.unip.cc.aps.app.Aplicativo;
 import br.unip.cc.aps.dao.DaoException;
 import br.unip.cc.aps.dao.RecordeDAO;
 import br.unip.cc.aps.dao.RecordeJpa;
@@ -21,54 +20,53 @@ public class GerenciadorDeRecordes {
         return instance;
     }
     
-    public Recorde novoRecorde(int pontos){
-        Recorde recorde = new Recorde(Aplicativo.getInstance().getNomeRecordista(), pontos);
-        return recorde;
-    }
-
 
     public GerenciadorDeRecordes() {
         recordes = dao.getArrayMateriais();
     }
     
-    public void adicionaSeForRecorde(int pontos) throws DaoException{
-        Recorde recorde = novoRecorde(pontos);
-        for(int i=0; i<=2;i++){
-            if(recorde.getPontos()>= recordes[i].getPontos()){
-                switch(i){
-                    case 0:
-                        recordes[1] = recordes[0];
-                        recordes[2] = recordes[1];
-                        recordes[0] = recorde;
-                        dao.excluir(recordes[2]);
-                        recorde.setPosicao(1);
-                        dao.incluir(recorde);
-                        break;
-                    case 1:
-                        if(!recorde.equals(recordes[0])){
+    public void adicionaSeForRecorde(String nome,int pontos) throws DaoException{
+        Recorde recorde = new Recorde(nome,pontos);
+        if(recordes.length != 0){
+            for(int i=0; i<=2;i++){
+                if(recorde.getPontos() >= recordes[i].getPontos()){
+                    switch(i){
+                        case 0:
+                            recordes[1] = recordes[0];
                             recordes[2] = recordes[1];
-                            recordes[1] = recorde;
+                            recordes[0] = recorde;
                             dao.excluir(recordes[2]);
-                            recorde.setPosicao(2);
+                            recorde.setPosicao(1);
                             dao.incluir(recorde);
+                            break;
+                        case 1:
+                            if(!recorde.equals(recordes[0])){
+                                recordes[2] = recordes[1];
+                                recordes[1] = recorde;
+                                dao.excluir(recordes[2]);
+                                recorde.setPosicao(2);
+                                dao.incluir(recorde);
+                            }
+                            break;
+                        case 2:
+                            if(!recorde.equals(recordes[0])&& !recorde.equals(recordes[1])){
+                            recordes[2] = recorde;
+                                dao.excluir(recordes[2]);
+                                recorde.setPosicao(3);
+                                dao.incluir(recorde);
+                            }
+                            break;
+                        default:
+                            //Mostrar Recorde
+                            i =3;
+                            break;
+                    }   
+                }else{
+                         JOptionPane.showMessageDialog(null,"Você não bateu os recordes!");   
                         }
-                        break;
-                    case 2:
-                        if(!recorde.equals(recordes[0])&& !recorde.equals(recordes[1])){
-                        recordes[2] = recorde;
-                            dao.excluir(recordes[2]);
-                            recorde.setPosicao(3);
-                            dao.incluir(recorde);
-                        }
-                        break;
-                    default:
-                        //Mostrar Recorde
-                        i =3;
-                        break;
-                }   
-            }else{
-                     JOptionPane.showMessageDialog(null,"Você não bateu os recordes!");   
-                    }
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "BD recordes vazio");
         }
     }
 }
