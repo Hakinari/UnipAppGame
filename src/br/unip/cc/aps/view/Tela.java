@@ -79,8 +79,11 @@ public class Tela  extends JFrame{
             @Override
             public void actionPerformed(ActionEvent ae) {
                 JOptionPane.showMessageDialog(null,                                                    
-                        "",          /////////// IMPLEMENTAR MENSSAGEM DE AJUDA /////////////
-                        "Ajuda",JOptionPane.INFORMATION_MESSAGE);
+                        "Clique no botão menu e depois em jogar para iniciar o jogo,\n"
+                                + "após iniciar o jogo selecione a lixeira correta que deve ir o lixo\n"
+                                + "e clique em confirmar, caso acertar a lixeira você ira receber 10\n"
+                                + "pontos mas caso errar 3 vezes a lixeira o jogo acaba.",          /////////// IMPLEMENTAR MENSSAGEM DE AJUDA /////////////
+                        "Instruções",JOptionPane.INFORMATION_MESSAGE);
             }
         });
         menuAjuda.add(itemAjuda);
