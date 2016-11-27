@@ -24,7 +24,7 @@ public class GerenciadorDeRecordes {
     public GerenciadorDeRecordes() {
         recordes = dao.getArrayMateriais();
     }
-    
+    //l
     public void adicionaSeForRecorde(String nome,int pontos) throws DaoException{
         Recorde recorde = new Recorde(nome,pontos);
         if(recordes.length != 0){
