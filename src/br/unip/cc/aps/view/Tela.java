@@ -4,7 +4,6 @@ package br.unip.cc.aps.view;
 import br.unip.cc.aps.app.Aplicativo;
 import br.unip.cc.aps.model.ControladorDeJogo;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
@@ -57,7 +56,7 @@ public class Tela  extends JFrame{
         itemReiniciar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-               ControladorDeJogo.getInstance().reset();
+               ControladorDeJogo.getInstance().iniciar();
                 
             }
         });

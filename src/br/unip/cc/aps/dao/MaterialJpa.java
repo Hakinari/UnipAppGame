@@ -9,8 +9,11 @@ package br.unip.cc.aps.dao;
 import br.unip.cc.aps.model.Material;
 import br.unip.cc.aps.model.TipoMaterial;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -35,7 +38,7 @@ public class MaterialJpa implements MaterialDAO{
     }
     
     @Override
-    public List<Material> getTodos() throws DaoException {
+    public  List<Material> getTodos() throws DaoException {
           List<Material> listaDeMateriais = null;
         try {
             Query query = entityManager.createNamedQuery("Material.getTodos");
@@ -46,63 +49,20 @@ public class MaterialJpa implements MaterialDAO{
         }
         return listaDeMateriais;
     }
-
     @Override
-    public List<Material> getMaterialPorTipo(TipoMaterial tipo) throws DaoException {
-    List<Material> listaDeMateriais = null;
-        try{
-            Query query = entityManager.createNamedQuery("Material.getPorTipo");
-            query.setParameter("tipo", tipo);
-            listaDeMateriais = query.getResultList();
-        }catch(Exception ex){
-            throw new DaoException(
-                    "Não foi possível recuperar os Materiais por tipo", ex);
-        }
-        return listaDeMateriais; 
-    }
-
-    @Override
-    public void incluir(Material material) throws DaoException {
-     try {
-            entityManager.getTransaction().begin();
-            entityManager.persist(material);
-            entityManager.getTransaction().commit();
-        } catch (Exception ex) {
-            entityManager.getTransaction().rollback();
-            throw new DaoException(
-                    "Não foi possível incluir", ex);
-        }
-    }
-
-    @Override
-    public void excluir(Material material) throws DaoException {
- try {
-            entityManager.getTransaction().begin();
-            if(!entityManager.contains(material)){
-                entityManager.merge(material);
+    public Material[] getArrayMateriais(){
+        Material[] arrayMateriais = null;
+        try {
+            List<Material> listaDeMateriais = getTodos();
+             arrayMateriais = new Material[listaDeMateriais.size()];
+            int i = 0;
+            for(Material material:listaDeMateriais){
+                arrayMateriais[i] = material;
+                i++;
             }
-            entityManager.remove(material);
-            entityManager.getTransaction().commit();
-        } catch (Exception ex) {
-            entityManager.getTransaction().rollback();
-            throw new DaoException("Não foi possível excluir", ex);
+        } catch (DaoException ex) {
+            JOptionPane.showMessageDialog(null,"Erro ao recuperar Materiais");
         }
-    }
-
-    @Override
-    public void atualizar(Material material) throws DaoException {
-try {
-            entityManager.getTransaction().begin();
-            // verifica se o objeto nao e gerenciado pelo entityManager
-            if (!entityManager.contains(material)) {
-                // se nao for torna gerenciavel
-                entityManager.merge(material);
-            }
-          
-            entityManager.getTransaction().commit();
-        } catch (Exception ex) {
-            entityManager.getTransaction().rollback();
-            throw new DaoException("Não foi possível atualizar", ex);
-        }
+            return arrayMateriais;
     }
 }

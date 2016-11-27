@@ -2,40 +2,16 @@
 package br.unip.cc.aps.model;
 
 
-import br.unip.cc.aps.dao.DaoException;
 import br.unip.cc.aps.dao.MaterialDAO;
 import br.unip.cc.aps.dao.MaterialJpa;
-import java.util.List;
+import java.util.Random;
 
 
 public class GerenciadorMaterial {
     
      
     private MaterialDAO dao = MaterialJpa.getInstance(); 
-    public List<Material> getTodos() throws DaoException {
-       return dao.getTodos();
-    }
-
-    public void salvar(Material material) throws DaoException {
-         if(material.getId()==0){
-       
-            dao.incluir(material);
-                 
-        }else{
-            dao.atualizar(material);
-        }
-    }
-
-    public void excluir(Material material) throws DaoException {
-        dao.excluir(material);
-    }
-
-    public Material criaMaterial(TipoMaterial tipo){
-        Material material = new Material();
-        material.setId(0);
-        material.setTipo(tipo);
-        return material;
-    }
+    private Material[] arrayDeMateriais = dao.getArrayMateriais();
     
     private static GerenciadorMaterial instance;
 
@@ -49,18 +25,16 @@ public class GerenciadorMaterial {
     public static GerenciadorMaterial getInstance() {
         return instance;
     }
- 
-     public List<Material> getMaterialPorTipo(TipoMaterial tipo) throws DaoException {
-        return dao.getMaterialPorTipo(tipo);
+
+    public Material pegaMaterialAleatorio() {
+        Random r = new Random();
+        int aleatorio = r.nextInt(arrayDeMateriais.length);
+        return pegaMaterialDoArray(aleatorio);
     }
     
-    
-    
-    
-    
-    
-    
-    
+    private Material pegaMaterialDoArray(int aleatorio) {
+        return arrayDeMateriais[aleatorio];
+    }
     
     
 }

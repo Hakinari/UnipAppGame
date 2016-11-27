@@ -16,13 +16,10 @@ import javax.persistence.Table;
 
 
 
-@NamedQueries({
-    @NamedQuery(name = "Material.getTodos", query = "Select material from Material material"),
-    @NamedQuery(name = "Material.getPorTipo", 
-// :nomeDoParametro veja abaixo o exemplo tipo
-            query = "Select material from Material material where material.tipo = :tipo"),
+
+    @NamedQuery(name = "Material.getTodos", query = "Select material from Material material")
+
     
-})
 @Entity
 @Table(name = "TB_MATERIAL")
 public class Material implements Serializable{

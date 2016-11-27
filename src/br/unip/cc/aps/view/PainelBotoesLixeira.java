@@ -28,6 +28,9 @@ public class PainelBotoesLixeira extends javax.swing.JPanel {
         btnVidro = new javax.swing.JButton();
         btnPapel = new javax.swing.JButton();
         btnOk = new javax.swing.JButton();
+        lblLixeiraSelecionada = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtLixeiraSelecionada = new javax.swing.JTextPane();
 
         setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         setForeground(new java.awt.Color(255, 0, 0));
@@ -96,28 +99,43 @@ public class PainelBotoesLixeira extends javax.swing.JPanel {
             }
         });
 
+        lblLixeiraSelecionada.setText("Lixeira Selecionada:");
+
+        txtLixeiraSelecionada.setEditable(false);
+        jScrollPane1.setViewportView(txtLixeiraSelecionada);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(70, 70, 70)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnOk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnPlastico)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnVidro))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnOk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(btnPlastico)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(btnVidro)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnMetal)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnPapel)))
-                .addContainerGap(142, Short.MAX_VALUE))
+                .addContainerGap(75, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblLixeiraSelecionada, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(101, 101, 101))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(51, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblLixeiraSelecionada, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnMetal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPapel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -134,23 +152,28 @@ public class PainelBotoesLixeira extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
+        txtLixeiraSelecionada.setText(" ");
         ControladorDeJogo.getInstance().VerificarSeAcertou();
     }//GEN-LAST:event_btnOkActionPerformed
 
     private void btnMetalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMetalActionPerformed
         ControladorDeJogo.getInstance().setTipoBotao(TipoMaterial.METAL);
+        txtLixeiraSelecionada.setText("AMARELA");
     }//GEN-LAST:event_btnMetalActionPerformed
 
     private void btnPapelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPapelActionPerformed
         ControladorDeJogo.getInstance().setTipoBotao(TipoMaterial.PAPEL);
+        txtLixeiraSelecionada.setText("AZUL");
     }//GEN-LAST:event_btnPapelActionPerformed
 
     private void btnVidroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVidroActionPerformed
         ControladorDeJogo.getInstance().setTipoBotao(TipoMaterial.VIDRO);
+        txtLixeiraSelecionada.setText("VERDE");
     }//GEN-LAST:event_btnVidroActionPerformed
 
     private void btnPlasticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlasticoActionPerformed
         ControladorDeJogo.getInstance().setTipoBotao(TipoMaterial.PLASTICO);
+        txtLixeiraSelecionada.setText("VERMELHA");
     }//GEN-LAST:event_btnPlasticoActionPerformed
 
 
@@ -160,5 +183,8 @@ public class PainelBotoesLixeira extends javax.swing.JPanel {
     private javax.swing.JButton btnPapel;
     private javax.swing.JButton btnPlastico;
     private javax.swing.JButton btnVidro;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblLixeiraSelecionada;
+    private javax.swing.JTextPane txtLixeiraSelecionada;
     // End of variables declaration//GEN-END:variables
 }

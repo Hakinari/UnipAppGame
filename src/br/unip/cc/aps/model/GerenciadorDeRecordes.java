@@ -1,21 +1,35 @@
 package br.unip.cc.aps.model;
 
+import br.unip.cc.aps.app.Aplicativo;
+import br.unip.cc.aps.dao.DaoException;
+import br.unip.cc.aps.dao.RecordeDAO;
+import br.unip.cc.aps.dao.RecordeJpa;
 import javax.swing.JOptionPane;
 
 
 public class GerenciadorDeRecordes {
     
     private static GerenciadorDeRecordes instance;
-    private Recordes[] recordes;
+    private RecordeDAO dao = RecordeJpa.getInstance();
+    private Recorde[] recordes = null;
     
     static{
         instance = new GerenciadorDeRecordes();
     }
+    public Recorde novoRecorde(int pontos){
+        Recorde recorde = new Recorde(Aplicativo.getInstance().getNomeRecordista(), pontos);
+        return recorde;
+    }
+    public static GerenciadorDeRecordes getInstance() {
+        return instance;
+    }
 
     public GerenciadorDeRecordes() {
-        recordes = new Recordes[3];
+        recordes = dao.getArrayMateriais();
     }
-    public void adicionaSeForRecorde(Recordes recorde ){
+    
+    public void adicionaSeForRecorde(int pontos) throws DaoException{
+        Recorde recorde = novoRecorde(pontos);
         for(int i=0; i<=2;i++){
             if(recorde.getPontos()>= recordes[i].getPontos()){
                 switch(i){
@@ -23,13 +37,26 @@ public class GerenciadorDeRecordes {
                         recordes[1] = recordes[0];
                         recordes[2] = recordes[1];
                         recordes[0] = recorde;
+                        dao.excluir(recordes[2]);
+                        recorde.setPosicao(1);
+                        dao.incluir(recorde);
                         break;
                     case 1:
-                        recordes[2] = recordes[1];
-                        recordes[1] = recorde;
+                        if(!recorde.equals(recordes[0])){
+                            recordes[2] = recordes[1];
+                            recordes[1] = recorde;
+                            dao.excluir(recordes[2]);
+                            recorde.setPosicao(2);
+                            dao.incluir(recorde);
+                        }
                         break;
                     case 2:
+                        if(!recorde.equals(recordes[0])&& !recorde.equals(recordes[1])){
                         recordes[2] = recorde;
+                            dao.excluir(recordes[2]);
+                            recorde.setPosicao(3);
+                            dao.incluir(recorde);
+                        }
                         break;
                     default:
                         //Mostrar Recorde

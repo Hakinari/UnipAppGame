@@ -2,6 +2,10 @@
 package br.unip.cc.aps.model;
 
 import br.unip.cc.aps.app.Aplicativo;
+import br.unip.cc.aps.dao.DaoException;
+import br.unip.cc.aps.model.Material;
+import br.unip.cc.aps.model.TipoMaterial;
+import br.unip.cc.aps.model.GerenciadorMaterial;
 import javax.swing.JOptionPane;
 
 
@@ -9,130 +13,86 @@ public class ControladorDeJogo {
     
     private static ControladorDeJogo instance;
     
-    private Material[] listaDeMateriais; //// Icrementar
     private Material material;
-    private int pontos;
-    private int[] idHistoricoDeMaterial;
-    int erros;
     private TipoMaterial tipoBotao;
+    private Partida partida;
     
     
 
     
     static{
-        instance = new ControladorDeJogo(1);
+        instance = new ControladorDeJogo();
     }
-    public ControladorDeJogo(int i) {
-        listaDeMateriais = new Material[4];
-        listaDeMateriais[0] = new Material(0,"/br/unip/cc/aps/images/lixeira_VIDRO.png",TipoMaterial.VIDRO);
-        listaDeMateriais[1] = new Material(1,"/br/unip/cc/aps/images/lixeira_METAL.png",TipoMaterial.METAL);
-        listaDeMateriais[2] = new Material(1,"/br/unip/cc/aps/images/lixeira_PLASTICO.png",TipoMaterial.PLASTICO);
-        listaDeMateriais[3] = new Material(1,"/br/unip/cc/aps/images/lixeira_PAPEL.png",TipoMaterial.PAPEL);
-        
-//        listaDeMateriais = new Material[16]; // RECEBER DO BANCO
-//        pontos = 0;
-//        idHistoricoDeMaterial = new int[3];
-//        erros = 0;
-//        for(int i=0;i <=2;i++ ){
-//            idHistoricoDeMaterial[i] = -1;
-//        }
+    public ControladorDeJogo() {        
     }
     
-    public void  VerificarSeAcertou (){
-        
-         if(tipoBotao == material.getTipo()){ //SE acertou
-             pontos = pontos+10;
-             Aplicativo.getInstance().atualizaPontosNaTela();
+    public void iniciar(){                      // Metodo iniciar pra iniciar a rodar o jogo
+       if(partida!= null){              //para poder usar de novo no botão reiniciar
+           partida = null;
+       }
+       partida = new Partida();
+       material = GerenciadorMaterial.getInstance().pegaMaterialAleatorio();
+       Aplicativo.getInstance().setImagemNaTela(material.getImagem()); // Usa app pra colocar material na tela
+    }
+    public void  VerificarSeAcertou () throws DaoException{        
+        if(tipoBotao != null){ 
+        if(tipoBotao == material.getTipo()){ //SE acertou
+            partida.addPontos();
+            Aplicativo.getInstance().atualizaPontosNaTela();
+            ganhou();
          }else{
-             if(erros == 2){
-                 JOptionPane.showMessageDialog(null,"PERDEU");
-                 reset();
+             if(partida.getErros() == 2){
+                 JOptionPane.showMessageDialog(null,"VOCE PERDEU");
+                 System.out.println("PERDEU");
+                 acabou();
              }else{
-                 addErro();
+                 partida.addErro();
                  JOptionPane.showMessageDialog(null,"ERROU");
-                 
              }
          }
-         atualizaMaterial();        
+        tipoBotao = null;
+        atualizaMaterial();        
+        }else{
+            JOptionPane.showMessageDialog(null,"Escolha uma Lixeira");
+        }
     }  
        
-    public void iniciar(){                      // Metodo iniciar pra iniciar a rodar o jogo
-       pontos = 0;
-       idHistoricoDeMaterial = new int[3];
-       erros = 0;
-       for(int i=0;i <=2;i++ ){
-            idHistoricoDeMaterial[i] = -1;
-       }
-       material = listaDeMateriais[0];
-       //material.setImagem("/br/unip/cc/aps/images/lixeira_VIDRO.png"); ////TIRAR TESTE
-       Aplicativo.getInstance().setImagemNaTela(material.getImagem()); // Usa app pra colocar material na tela
-          
-    }
-    
     public void atualizaMaterial(){     // Adiciona no histórico
-        addMaterialNoHistorico();
+        partida.addMaterialNoHistorico(material.getId());
         mudaMaterial();
     }
-    int i =0;                                                                    //Tirar teste de gerar material a partir do vetor
     public void mudaMaterial(){     // troca o material principal
-        //int random = (int)Math.random()*16;
-        //material = listaDeMateriais[random];
-        i++;                                                                    //Tirar teste de gerar material a partir do vetor
-        material = listaDeMateriais[i];                                         //Tirar teste de gerar material a partir do vetor
-        
-        if (idHistoricoDeMaterial[0] != -1){    // se tiver algum material no historico
-            for(int i = 0; i <=2;i++){
-                if(idHistoricoDeMaterial[i] == material.getId()){   //verifica se não tem nenhum 
-                                                                                      //material no histórico q ja foi usado
-                }
-            }
+
+        material = GerenciadorMaterial.getInstance().pegaMaterialAleatorio();
+        if(partida.estaNoHistorico(material.getId())){
+            mudaMaterial();
         }
-                                             
+
         Aplicativo.getInstance().setImagemNaTela(material.getImagem());         
     }
-    
     public void setTipoBotao(TipoMaterial tipoBotao) {
         this.tipoBotao = tipoBotao;
     }
-    
     public String getImagemMaterial(){
         return material.getImagem(); 
-    }
-       
-    public void addMaterialNoHistorico(){
-        if(idHistoricoDeMaterial[0] == -1 ){    // SE não tem nenhum histórico
-            idHistoricoDeMaterial[0] = material.getId();
-        }else{ 
-            idHistoricoDeMaterial[2] = idHistoricoDeMaterial[1]; // histórico passa uma a mais na fila
-            idHistoricoDeMaterial[1] = idHistoricoDeMaterial[0];
-            idHistoricoDeMaterial[0] = material.getId();
+    }  
+    public void ganhou() throws DaoException{
+        if(getPontos()==100){
+            JOptionPane.showMessageDialog(null, "PARABÉNS VOCÊ GANHOU");
+            JOptionPane.showMessageDialog(null,Aplicativo.getInstance().getPainelRecorde(), "Você é um recordista",JOptionPane.OK_OPTION);
+            GerenciadorDeRecordes.getInstance().adicionaSeForRecorde(partida.getPontos());
+            //Chamar tela recordes
+            acabou();
         }
     }
-    
-    public void addErro() {
-        this.erros++;
-    }
-    
-    public void reset(){                // zera todas configuraçoes do jogo
-        this.pontos = 0;
-        this.erros = 0;
+    public void acabou(){
+        Aplicativo.getInstance().setImagemNaTela("/br/unip/cc/aps/images/ImagemInicial.png");
         tipoBotao = null ;
-        for(int i = 0;i <=2; i++){
-            idHistoricoDeMaterial[i] = -1;
-        }
-        //iniciar();
-        Aplicativo.getInstance().setImagemInicialNaTela();
-    }    
-
-    public int getPontos() {
-        return pontos;
+        partida = null;
     }
-    
-    public void perdeu(){
-        reset();
-        Aplicativo.getInstance().setImagemInicialNaTela();
+    public int getPontos(){
+        return partida.getPontos();
     }
-    
     public static ControladorDeJogo getInstance() {
         return instance;
     }

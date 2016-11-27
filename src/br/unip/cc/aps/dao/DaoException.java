@@ -1,4 +1,3 @@
-
 package br.unip.cc.aps.dao;
 
 public class DaoException extends Exception{
