@@ -68,18 +68,7 @@ public class Tela  extends JFrame{
             @Override
             public void actionPerformed(ActionEvent ae) {
               ///////////// IMPLEMENTAR ///////////////////
-              String recordesNome = "Posição        Nome        Pontos\n";
-              Recorde[] arrayRecorde = Aplicativo.getInstance().getArrayRecorde(); 
-              
-              for(int i=0; i<=2;i++ ){
-                recordesNome = recordesNome + arrayRecorde[i].getPosicao()
-                        +" "+arrayRecorde[i].getNome()+" "+arrayRecorde[i].getPontos()+" \n" ;
-                  
-              }
-              JOptionPane.showMessageDialog(null,                                                    
-                        "Recordes:\n"
-                                +recordesNome,          
-                        "Recordes",JOptionPane.INFORMATION_MESSAGE);
+              Aplicativo.getInstance().telaDeRecorde();
                                           
             }
         });
@@ -97,7 +86,8 @@ public class Tela  extends JFrame{
                         "Clique no botão menu e depois em jogar para iniciar o jogo,\n"
                                 + "após iniciar o jogo selecione a lixeira correta que deve ir o lixo\n"
                                 + "e clique em confirmar, caso acertar a lixeira você ira receber 10\n"
-                                + "pontos mas caso errar 3 vezes a lixeira o jogo acaba.",          /////////// IMPLEMENTAR MENSSAGEM DE AJUDA /////////////
+                                + "pontos ao receber 100 pontos você vence o jogo mas caso errar 3\n"
+                                + "vezes, o jogo acaba.",          /////////// IMPLEMENTAR MENSSAGEM DE AJUDA /////////////
                         "Instruções",JOptionPane.INFORMATION_MESSAGE);
             }
         });
@@ -111,9 +101,9 @@ public class Tela  extends JFrame{
             public void actionPerformed(ActionEvent ae) {
                 JOptionPane.showMessageDialog(null,                                                    
                         "Desenvolvido por:\n"
-                                + "- Duduzin\n"
-                                + "- Robertinho\n"
-                                + "- Deninho",          
+                                + "- Eduardo Tiani\n"
+                                + "- Carlos Pulido\n"
+                                + "- Dennis Meira",          
                         "Desenvolvedores",JOptionPane.INFORMATION_MESSAGE);
             }
         });
@@ -126,7 +116,7 @@ public class Tela  extends JFrame{
             public void actionPerformed(ActionEvent ae) {
                 JOptionPane.showMessageDialog(null,                                                    
                         "Jogo ambiental\n"
-                                + "- Version 0.0.1\n",          
+                                + "- Version 0.2.9\n",          
                         "Versão",JOptionPane.INFORMATION_MESSAGE);
             }
         });

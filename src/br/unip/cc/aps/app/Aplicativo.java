@@ -10,6 +10,8 @@ import java.io.File;
 import java.net.URISyntaxException;
 import java.net.URL;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 
 
@@ -59,6 +61,25 @@ public class Aplicativo {
    
     public Recorde[] getArrayRecorde(){
     return GerenciadorDeRecordes.getInstance().getRecordes();     
+    }
+    
+    public void telaDeRecorde(){
+        
+        String recordesNome = "Posição        Nome        Pontos\n";
+              Recorde[] arrayRecorde = Aplicativo.getInstance().getArrayRecorde(); 
+              
+              for(int i=0; i<=2;i++ ){
+                recordesNome = recordesNome + arrayRecorde[i].getPosicao()
+                        +"        "+arrayRecorde[i].getNome()+"        "
+                        +"        "+arrayRecorde[i].getPontos()
+                        +" \n" ;
+                  
+              }
+              JOptionPane.showMessageDialog(null,                                                    
+                        ""+recordesNome,          
+                        "Recordes",JOptionPane.INFORMATION_MESSAGE);
+        
+    
     }
 
 

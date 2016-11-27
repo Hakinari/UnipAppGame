@@ -22,7 +22,7 @@ public class PainelJogo extends JPanel {
         BorderLayout layout = new BorderLayout();
         this.setLayout(layout);
         this.add(criaPainelPontos(),BorderLayout.NORTH);
-        this.add(criaPainelImagem(),BorderLayout.WEST);
+        this.add(criaPainelImagem(),BorderLayout.WEST);  
     }
     public JPanel criaPainelPontos(){
         JPanel painel = new JPanel(new FlowLayout(FlowLayout.LEFT,10,10));

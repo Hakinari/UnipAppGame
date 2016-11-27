@@ -62,5 +62,9 @@ public class Partida {
     public int getErros() {
         return erros;
     }
+
+    void setPontos(int i) {
+        this.pontos = i;
+    }
     
 }    

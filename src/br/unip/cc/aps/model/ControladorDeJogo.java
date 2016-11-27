@@ -81,14 +81,19 @@ public class ControladorDeJogo {
         }
     }
     public void acabou() throws DaoException{
+        
         Aplicativo.getInstance().setImagemNaTela("/br/unip/cc/aps/images/ImagemInicial.png");
         
         if(GerenciadorDeRecordes.getInstance().eRecord(partida.getPontos())){
             String nome = JOptionPane.showInputDialog(null, "Digite seu nome","Você é um recordista",JOptionPane.OK_OPTION);
             GerenciadorDeRecordes.getInstance().adicionaSeForRecorde(nome,partida.getPontos());
+            Aplicativo.getInstance().telaDeRecorde();            
         }
         tipoBotao = null ;
+        partida.setPontos(0);
+        Aplicativo.getInstance().atualizaPontosNaTela();
         partida = null;
+        
     }
     public int getPontos(){
         return partida.getPontos();
