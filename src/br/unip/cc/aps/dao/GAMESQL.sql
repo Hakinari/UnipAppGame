@@ -30,4 +30,17 @@ DROP TABLE TB_MATERIAL
 
 INSERT INTO TB_MATERIAL(IMAGEM,TIPO) VALUES("/br/unip/cc/aps/images/balde_plastico.jpg","PLASTICO");
 INSERT INTO TB_MATERIAL(IMAGEM,TIPO) VALUES("/br/unip/cc/aps/images/brinquedo_plastico.jpg","PLASTICO");
+INSERT INTO TB_MATERIAL(IMAGEM,TIPO) VALUES("/br/unip/cc/aps/images/copo_plastico.jpg","PLASTICO");
 INSERT INTO TB_MATERIAL(IMAGEM,TIPO) VALUES("/br/unip/cc/aps/images/garrafa_pet.jpg","PLASTICO");
+INSERT INTO TB_MATERIAL(IMAGEM,TIPO) VALUES("/br/unip/cc/aps/images/faca.jpg","METAL");
+INSERT INTO TB_MATERIAL(IMAGEM,TIPO) VALUES("/br/unip/cc/aps/images/garfo.jpg","METAL");
+INSERT INTO TB_MATERIAL(IMAGEM,TIPO) VALUES("/br/unip/cc/aps/images/lata.jpg","METAL");
+INSERT INTO TB_MATERIAL(IMAGEM,TIPO) VALUES("/br/unip/cc/aps/images/prego.jpg","METAL");
+INSERT INTO TB_MATERIAL(IMAGEM,TIPO) VALUES("/br/unip/cc/aps/images/vaso_vidro.jpg","VIDRO");
+INSERT INTO TB_MATERIAL(IMAGEM,TIPO) VALUES("/br/unip/cc/aps/images/prato_vidro.jpg","VIDRO");
+INSERT INTO TB_MATERIAL(IMAGEM,TIPO) VALUES("/br/unip/cc/aps/images/garrafa_vidro.jpg","VIDRO");
+INSERT INTO TB_MATERIAL(IMAGEM,TIPO) VALUES("/br/unip/cc/aps/images/garrafaCerveja_vidro.jpg","VIDRO");
+INSERT INTO TB_MATERIAL(IMAGEM,TIPO) VALUES("/br/unip/cc/aps/images/papelao.jpg","PAPEL");
+INSERT INTO TB_MATERIAL(IMAGEM,TIPO) VALUES("/br/unip/cc/aps/images/postit.jpg","PAPEL");
+INSERT INTO TB_MATERIAL(IMAGEM,TIPO) VALUES("/br/unip/cc/aps/images/jornal.jpg","PAPEL");
+INSERT INTO TB_MATERIAL(IMAGEM,TIPO) VALUES("/br/unip/cc/aps/images/folha_sulfite.jpg","PAPEL");
