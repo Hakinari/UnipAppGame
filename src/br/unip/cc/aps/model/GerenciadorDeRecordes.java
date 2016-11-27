@@ -16,13 +16,16 @@ public class GerenciadorDeRecordes {
     static{
         instance = new GerenciadorDeRecordes();
     }
+
+    public static GerenciadorDeRecordes getInstance() {
+        return instance;
+    }
+    
     public Recorde novoRecorde(int pontos){
         Recorde recorde = new Recorde(Aplicativo.getInstance().getNomeRecordista(), pontos);
         return recorde;
     }
-    public static GerenciadorDeRecordes getInstance() {
-        return instance;
-    }
+
 
     public GerenciadorDeRecordes() {
         recordes = dao.getArrayMateriais();

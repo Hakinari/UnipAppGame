@@ -19,6 +19,9 @@ public class Recorde implements Serializable{
     private String nome;
     @Column(name = "PONTOS",nullable = false)
     private int pontos;
+
+    public Recorde() {
+    }
     
     public int getPosicao() {
         return posicao;

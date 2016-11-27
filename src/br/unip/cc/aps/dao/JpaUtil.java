@@ -18,7 +18,7 @@ public class JpaUtil {
     private static EntityManager em;
 
     public static EntityManager getEntityManager() {
-        if(em==null){             
+        if(em ==null){             
             EntityManagerFactory entityManagerFactory = 
                     Persistence.createEntityManagerFactory("ControleDeMateriaisPU");
             em = entityManagerFactory.createEntityManager();

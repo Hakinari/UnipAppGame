@@ -2,6 +2,7 @@ package br.unip.cc.aps.app;
 
 import br.unip.cc.aps.model.ControladorDeJogo;
 import br.unip.cc.aps.model.GerenciadorDeRecordes;
+import br.unip.cc.aps.model.GerenciadorMaterial;
 import br.unip.cc.aps.view.PainelBotoesLixeira;
 import br.unip.cc.aps.view.PainelIncluirRecorde;
 import br.unip.cc.aps.view.PainelJogo;
@@ -28,6 +29,7 @@ public class Aplicativo {
    private Aplicativo(){
         painelJogo = new PainelJogo();
         painelBotoesLixeira = new PainelBotoesLixeira();
+        GerenciadorMaterial.getInstance();
    }
 
     public PainelIncluirRecorde getPainelRecorde() {

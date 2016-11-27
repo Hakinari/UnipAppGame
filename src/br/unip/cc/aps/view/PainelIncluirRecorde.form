@@ -23,7 +23,7 @@
                   <Component id="lblDigiteNome" max="32767" attributes="0"/>
                   <Component id="btnSalvar" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="76" max="32767" attributes="0"/>
+              <EmptySpace pref="21" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

@@ -17,7 +17,7 @@ import javax.persistence.Table;
 
 
 
-    @NamedQuery(name = "Material.getTodos", query = "Select material from Material material")
+@NamedQuery(name = "Material.getTodos", query = "Select material from Material material")
 
     
 @Entity
@@ -100,10 +100,6 @@ public class Material implements Serializable{
     public String toString() {
         return "Material{" + "id=" + id + ", imagem=" + imagem + ", tipo=" + tipo + '}';
     }
-    
-    
-  
-
     public Material() {
     }
 

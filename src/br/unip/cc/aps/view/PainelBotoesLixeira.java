@@ -1,8 +1,11 @@
 package br.unip.cc.aps.view;
 
 import br.unip.cc.aps.app.Aplicativo;
+import br.unip.cc.aps.dao.DaoException;
 import br.unip.cc.aps.model.ControladorDeJogo;
 import br.unip.cc.aps.model.TipoMaterial;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
     
 public class PainelBotoesLixeira extends javax.swing.JPanel {
@@ -111,6 +114,7 @@ public class PainelBotoesLixeira extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(70, 70, 70)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblLixeiraSelecionada, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(btnOk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -123,10 +127,6 @@ public class PainelBotoesLixeira extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnPapel)))
                 .addContainerGap(75, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblLixeiraSelecionada, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(101, 101, 101))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,7 +153,11 @@ public class PainelBotoesLixeira extends javax.swing.JPanel {
 
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
         txtLixeiraSelecionada.setText(" ");
-        ControladorDeJogo.getInstance().VerificarSeAcertou();
+        try {
+            ControladorDeJogo.getInstance().VerificarSeAcertou();
+        } catch (DaoException ex) {
+            Logger.getLogger(PainelBotoesLixeira.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnOkActionPerformed
 
     private void btnMetalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMetalActionPerformed

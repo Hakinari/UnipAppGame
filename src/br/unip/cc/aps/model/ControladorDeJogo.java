@@ -3,10 +3,8 @@ package br.unip.cc.aps.model;
 
 import br.unip.cc.aps.app.Aplicativo;
 import br.unip.cc.aps.dao.DaoException;
-import br.unip.cc.aps.model.Material;
-import br.unip.cc.aps.model.TipoMaterial;
-import br.unip.cc.aps.model.GerenciadorMaterial;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 
 public class ControladorDeJogo {
@@ -79,7 +77,8 @@ public class ControladorDeJogo {
     public void ganhou() throws DaoException{
         if(getPontos()==100){
             JOptionPane.showMessageDialog(null, "PARABÉNS VOCÊ GANHOU");
-            JOptionPane.showMessageDialog(null,Aplicativo.getInstance().getPainelRecorde(), "Você é um recordista",JOptionPane.OK_OPTION);
+            JPanel painelRecorde = Aplicativo.getInstance().getPainelRecorde();
+            JOptionPane.showMessageDialog(null,painelRecorde, "Você é um recordista",JOptionPane.OK_OPTION);
             GerenciadorDeRecordes.getInstance().adicionaSeForRecorde(partida.getPontos());
             //Chamar tela recordes
             acabou();
