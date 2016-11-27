@@ -4,7 +4,6 @@ package br.unip.cc.aps.model;
 import br.unip.cc.aps.app.Aplicativo;
 import br.unip.cc.aps.dao.DaoException;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 
 public class ControladorDeJogo {
@@ -78,14 +77,16 @@ public class ControladorDeJogo {
     public void ganhou() throws DaoException{
         if(getPontos()==100){
             JOptionPane.showMessageDialog(null, "PARABÉNS VOCÊ GANHOU");
-            String nome = JOptionPane.showInputDialog(null, "Digite seu nome","Você é um recordista",JOptionPane.OK_OPTION);
-            GerenciadorDeRecordes.getInstance().adicionaSeForRecorde(nome,partida.getPontos());
-            //Chamar tela recordes
             acabou();
         }
     }
-    public void acabou(){
+    public void acabou() throws DaoException{
         Aplicativo.getInstance().setImagemNaTela("/br/unip/cc/aps/images/ImagemInicial.png");
+        
+        if(GerenciadorDeRecordes.getInstance().eRecord(partida.getPontos())){
+            String nome = JOptionPane.showInputDialog(null, "Digite seu nome","Você é um recordista",JOptionPane.OK_OPTION);
+            GerenciadorDeRecordes.getInstance().adicionaSeForRecorde(nome,partida.getPontos());
+        }
         tipoBotao = null ;
         partida = null;
     }

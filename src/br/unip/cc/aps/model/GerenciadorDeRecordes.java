@@ -30,7 +30,15 @@ public class GerenciadorDeRecordes {
     }
     
     
-    //l
+    public boolean eRecord(int pontos){
+        boolean bool = false;
+        for(int i=0;i<=2;i++){
+            if(pontos >= recordes[i].getPontos()){
+                bool = true;
+            }
+        }
+            return bool;
+    }
     public void adicionaSeForRecorde(String nome,int pontos) throws DaoException{
         Recorde recorde = new Recorde(nome,pontos);
         if(recordes.length != 0){
