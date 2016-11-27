@@ -25,5 +25,9 @@ PONTOS INT(3) NOT NULL,
 PRIMARY KEY (POSICAO)
 )ENGINE=INNODB;
 
+SELECT * FROM TB_MATERIAL
+DROP TABLE TB_MATERIAL
 
-INSERT INTO TB_MATERIAL(IMAGEM,TIPO) VALUES("/br/unip/cc/aps/images/lixeira_VIDRO.png","VIDRO")
+INSERT INTO TB_MATERIAL(IMAGEM,TIPO) VALUES("/br/unip/cc/aps/images/balde_plastico.jpg","PLASTICO");
+INSERT INTO TB_MATERIAL(IMAGEM,TIPO) VALUES("/br/unip/cc/aps/images/brinquedo_plastico.jpg","PLASTICO");
+INSERT INTO TB_MATERIAL(IMAGEM,TIPO) VALUES("/br/unip/cc/aps/images/garrafa_pet.jpg","PLASTICO");
