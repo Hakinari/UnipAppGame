@@ -74,7 +74,8 @@ public class Tela  extends JFrame{
         menuMenu.add(itemRecordes);
         
         ///////////AJUDA MENU///////////////
-        menuAjuda.addActionListener(new ActionListener() {
+        JMenuItem itemAjuda = new JMenuItem("Instruções");
+        itemAjuda.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 JOptionPane.showMessageDialog(null,                                                    
@@ -82,8 +83,12 @@ public class Tela  extends JFrame{
                         "Ajuda",JOptionPane.INFORMATION_MESSAGE);
             }
         });
-        ///////////SOBRE MENU///////////////
-        menuSobre.addActionListener(new ActionListener() {
+        menuAjuda.add(itemAjuda);
+
+        ///////////SOBRE/desenvolvedores MENU///////////////
+        JMenuItem itemSobreDesenvolvedores = new JMenuItem("Desenvolvedores");
+
+        itemSobreDesenvolvedores.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 JOptionPane.showMessageDialog(null,                                                    
@@ -91,10 +96,26 @@ public class Tela  extends JFrame{
                                 + "- Duduzin\n"
                                 + "- Robertinho\n"
                                 + "- Deninho",          
-                        "Sobre",JOptionPane.INFORMATION_MESSAGE);
+                        "Desenvolvedores",JOptionPane.INFORMATION_MESSAGE);
             }
         });
+        menuSobre.add(itemSobreDesenvolvedores);
+        ///////////SOBRE/versão MENU///////////////
+        JMenuItem itemSobreVersao = new JMenuItem("Versão");
+
+        itemSobreVersao.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                JOptionPane.showMessageDialog(null,                                                    
+                        "Jogo ambiental\n"
+                                + "- Version 0.0.1\n",          
+                        "Versão",JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+        menuSobre.add(itemSobreVersao);
+
         return barra;
+        
     }
     
     public static void main(String[] args) {
