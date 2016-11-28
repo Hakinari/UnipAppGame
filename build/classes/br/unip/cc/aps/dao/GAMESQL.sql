@@ -25,9 +25,28 @@ PONTOS INT(3) NOT NULL,
 PRIMARY KEY (POSICAO)
 )ENGINE=INNODB;
 
-SELECT * FROM TB_MATERIAL
-DROP TABLE TB_MATERIAL
+SELECT * FROM TB_MATERIAL;
+SELECT * FROM TB_recorde;
+DROP TABLE TB_MATERIAL;
+DROP TABLE TB_RECORDE;
 
 INSERT INTO TB_MATERIAL(IMAGEM,TIPO) VALUES("/br/unip/cc/aps/images/balde_plastico.jpg","PLASTICO");
 INSERT INTO TB_MATERIAL(IMAGEM,TIPO) VALUES("/br/unip/cc/aps/images/brinquedo_plastico.jpg","PLASTICO");
+INSERT INTO TB_MATERIAL(IMAGEM,TIPO) VALUES("/br/unip/cc/aps/images/copo_plastico.jpg","PLASTICO");
 INSERT INTO TB_MATERIAL(IMAGEM,TIPO) VALUES("/br/unip/cc/aps/images/garrafa_pet.jpg","PLASTICO");
+INSERT INTO TB_MATERIAL(IMAGEM,TIPO) VALUES("/br/unip/cc/aps/images/faca.jpg","METAL");
+INSERT INTO TB_MATERIAL(IMAGEM,TIPO) VALUES("/br/unip/cc/aps/images/garfo.jpg","METAL");
+INSERT INTO TB_MATERIAL(IMAGEM,TIPO) VALUES("/br/unip/cc/aps/images/lata.jpg","METAL");
+INSERT INTO TB_MATERIAL(IMAGEM,TIPO) VALUES("/br/unip/cc/aps/images/prego.jpg","METAL");
+INSERT INTO TB_MATERIAL(IMAGEM,TIPO) VALUES("/br/unip/cc/aps/images/vaso_vidro.jpg","VIDRO");
+INSERT INTO TB_MATERIAL(IMAGEM,TIPO) VALUES("/br/unip/cc/aps/images/prato_vidro.jpg","VIDRO");
+INSERT INTO TB_MATERIAL(IMAGEM,TIPO) VALUES("/br/unip/cc/aps/images/garrafa_vidro.jpg","VIDRO");
+INSERT INTO TB_MATERIAL(IMAGEM,TIPO) VALUES("/br/unip/cc/aps/images/garrafaCerveja_vidro.jpg","VIDRO");
+INSERT INTO TB_MATERIAL(IMAGEM,TIPO) VALUES("/br/unip/cc/aps/images/papelao.jpg","PAPEL");
+INSERT INTO TB_MATERIAL(IMAGEM,TIPO) VALUES("/br/unip/cc/aps/images/postit.jpg","PAPEL");
+INSERT INTO TB_MATERIAL(IMAGEM,TIPO) VALUES("/br/unip/cc/aps/images/jornal.jpg","PAPEL");
+INSERT INTO TB_MATERIAL(IMAGEM,TIPO) VALUES("/br/unip/cc/aps/images/folha_sulfite.jpg","PAPEL");
+
+INSERT INTO TB_RECORDE(POSICAO,NOME,PONTOS) VALUES(1,"Asa Noturna",10);
+INSERT INTO TB_RECORDE(POSICAO,NOME,PONTOS) VALUES(2,"Tia Harriet",10);
+INSERT INTO TB_RECORDE(POSICAO,NOME,PONTOS) VALUES(3,"Batman",10);

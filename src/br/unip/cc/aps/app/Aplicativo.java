@@ -65,13 +65,12 @@ public class Aplicativo {
     
     public void telaDeRecorde(){
         
-        String recordesNome = "Posição        Nome        Pontos\n";
+        String recordesNome = "NOME E PONTOS\n";
               Recorde[] arrayRecorde = Aplicativo.getInstance().getArrayRecorde(); 
               
               for(int i=0; i<=2;i++ ){
-                recordesNome = recordesNome + arrayRecorde[i].getPosicao()
-                        +"        "+arrayRecorde[i].getNome()+"        "
-                        +"        "+arrayRecorde[i].getPontos()
+                recordesNome = recordesNome +arrayRecorde[i].getNome()                        
+                        +": "+arrayRecorde[i].getPontos()
                         +" \n" ;
                   
               }
